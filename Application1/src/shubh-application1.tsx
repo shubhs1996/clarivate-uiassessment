@@ -13,7 +13,7 @@ const lifecycles = singleSpaReact({
   rootComponent: (props) => (
     <Provider store={store}>
       <Router>
-       <Root {...props}/>
+       <Root />
        </Router>
     </Provider>
   ),

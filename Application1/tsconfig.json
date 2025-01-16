@@ -2,7 +2,8 @@
   "extends": "ts-config-single-spa",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "declarationDir": "dist"
+    "declarationDir": "dist",
+    "noImplicitAny": true
   },
   "files": ["src/shubh-application1.tsx"],
   "include": ["src/**/*"],

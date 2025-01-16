@@ -4,30 +4,28 @@ import { Link } from "react-router-dom"
 import { Card } from "../../components/Card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFavData, updateListData } from "../../redux/action/action";
-import { Item, RootState } from "../../types/types";
+import { FavItem, Item, RootState } from "../../types/types";
+
 
 
 export function ListingPage() {
     const dispatch = useDispatch()
     const data = useSelector((state: RootState) => state?.list?.data)
     const favList = useSelector((state: RootState) => state?.list?.favList)
-    const [photos, setPhotos] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [page, setPage] = useState(1);
-    const [noMoreLoading, setNoMoreLoading] = useState(false)
-    const [isListAvailable, setIsListAvailable] = useState(true)
+    const [photos, setPhotos] = useState<Item[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [page, setPage] = useState<number>(1);
+    const [noMoreLoading, setNoMoreLoading] = useState<boolean>(false)
+    const [isListAvailable, setIsListAvailable] = useState<boolean>(true)
 
     const observer: React.MutableRefObject<IntersectionObserver> = useRef();
 
 
-    useEffect(()=>{
-        window.scrollTo({top:0 , behavior:'smooth'})
-    },[])
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, [])
 
-
-
-
-    const fetchPhotos = async (pageNumber) => {
+    const fetchPhotos = async (pageNumber:number) => {
         setLoading(true);
         const response = await fetch(
             `https://jsonplaceholder.typicode.com/albums/1/photos?_page=${pageNumber}&_limit=10`
@@ -46,15 +44,12 @@ export function ListingPage() {
     };
 
     useEffect(() => {
-
-
-
+        console.log("calling useEffect" ,data)
         if (data && isListAvailable) {
-            if (data && data.listArr) {
+            if (data && data.listArr.length>0) {
                 const { listArr, page } = data
                 setPhotos([...listArr])
                 setPage(page)
-
             } else {
                 fetchPhotos(1)
             }
@@ -62,9 +57,7 @@ export function ListingPage() {
         }
     }, [data]);
 
-
-
-    const lastPhotoElementRef = (node) => {
+    const lastPhotoElementRef = (node:HTMLDivElement) => {
         if (loading) return;
         if (observer.current) observer.current.disconnect();
 
@@ -81,29 +74,22 @@ export function ListingPage() {
         if (node) observer.current.observe(node);
     };
 
-    const handleUpdateFav = (data: Item) => {
+    const handleUpdateFav = (data: FavItem) => {
         dispatch(updateFavData(data))
     }
-
-
-    const checkIfFav = (id) => {
-        let index = favList.findIndex(item => item.id === id)
-        return index === -1 ? false : true
-    }
-
 
     return (<div className="" id="listpage-container">
         <div className="navigation-container">
             <h2>List Page</h2>
-            <Link to="/app1/" > {"< Back"}</Link>
+            <Link to="/" > {"< Back"}</Link>
         </div>
 
         <div className="card-list-container">
-            { photos && photos.length > 0 ?  photos.map((photo, index) => {
+            {photos && photos.length > 0 ? photos.map((photo, index) => {
                 if (photos.length === index + 1) {
                     return (
                         <div ref={!noMoreLoading ? lastPhotoElementRef : null}>
-                            <Card isFav={(()=>{
+                            <Card isFav={(() => {
                                 let index = favList.findIndex(item => item.id === photo.id)
                                 return index === -1 ? false : true
                             })()} id={photo.id} handleFav={handleUpdateFav} displayIcon={true} imageUrl={photo.thumbnailUrl} title={photo.title} />
@@ -111,7 +97,7 @@ export function ListingPage() {
                     );
                 } else {
                     return (
-                        <Card isFav={(()=>{
+                        <Card isFav={(() => {
                             let index = favList.findIndex(item => item.id === photo.id)
                             return index === -1 ? false : true
                         })()} id={photo.id} handleFav={handleUpdateFav} displayIcon={true} imageUrl={photo.thumbnailUrl} title={photo.title} />

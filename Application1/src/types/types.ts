@@ -1,8 +1,16 @@
 
 export interface Item {
-    id:number;
-    title:string;
-    imageUrl :string;
+    id: number;
+    albumId:number;
+    url: string;
+    title: string;
+    thumbnailUrl:string
+}
+
+export interface FavItem {
+    id :number;
+    imageUrl:string;
+    title:string
 }
 
 export interface ListItem { 
@@ -14,6 +22,6 @@ export interface ListItem {
 export  interface RootState {
     list: {
         data: ListItem;
-        favList:Item[]
+        favList:FavItem[]
       };
 }

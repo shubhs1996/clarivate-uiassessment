@@ -1,20 +1,27 @@
 
 import { UPDATE_FAV_DATA, UPDATE_LIST_DATA } from "../action/action"
-import { Item, ListItem } from "../../types/types"
+import { FavItem, Item, ListItem, RootState } from "../../types/types"
 
 
 
+interface InitialStateProps { 
+   data : ListItem,
+   favList : FavItem[]
 
-const initialState  = {
-  data : {},
-  favList: []
-};
+}
 
-const listReducer = (state = initialState, action) => {
 
+const initialState :InitialStateProps  = {
+  data : {
+    listArr: [],
+    page: 0
+  },
+  favList : []
+}
+
+const listReducer = (state = initialState, action: { type: string; payload?: any; }) => {
   const { type, payload } = action
-
-  switch (action.type) {
+  switch (type) {
     case UPDATE_LIST_DATA:
       console.log({payload})
       return { ...state, ['data']: { ...payload } };

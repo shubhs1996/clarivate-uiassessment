@@ -145,7 +145,7 @@ h6 {
     position: absolute;
     bottom: 0;
     height: var(--app-footer-height);
-    width: 100%;
+    width: calc(100% - var(--site-navigation-panel-width));
     margin-left: var(--site-navigation-panel-width);
     display: flex;
     flex-direction: row;

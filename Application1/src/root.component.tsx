@@ -5,12 +5,12 @@ import { ListingPage } from "./pages/ListingPage/ListingPage"
 
 
 
-export default function Root(props) {
+export default function Root() {
   return  <Switch>
-           <Route exact path="/app1/">
+           <Route exact path="/">
             <Dashboard />
           </Route>
-          <Route  exact path="/app1/list">
+          <Route  exact path="/list">
             <ListingPage />
           </Route>
   </Switch>

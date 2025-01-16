@@ -1,7 +1,7 @@
 
 import { FaHeart } from "react-icons/fa";
 import "./_card.scss"
-import { Item } from "../../types/types";
+import { FavItem, Item } from "../../types/types";
 
 
 
@@ -11,7 +11,7 @@ interface CardProps {
     title: string;
     imageUrl: string;
     isFav?:boolean,
-    handleFav? : (data :Item )=> void
+    handleFav? : (data :FavItem )=> void
 }
 
 
