@@ -3,8 +3,12 @@
 ##Steps top run Application 
 
 Step 1. Clone repo using https://github.com/shubhs1996/clarivate-uiassessment.git 
- Step 2. Switch to master branch if not in master branch by default
- Step 3. Run following command for each folder 
+
+
+Step 2. Switch to master branch if not in master branch by default
+
+
+Step 3. Run following command for each folder 
         For Application1
           - cd Application1
           - git init
