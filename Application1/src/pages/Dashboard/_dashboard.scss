@@ -1,0 +1,19 @@
+#dashboard-page {
+
+    padding-bottom: 4rem;
+    padding-left: 20px;
+    padding-right: 20px;
+
+   
+
+
+    .card-list-container {
+        display: grid;
+        width: 90%;
+        margin: auto;
+        border: solid black 1px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 10px;
+        padding: 10px;
+    }
+}

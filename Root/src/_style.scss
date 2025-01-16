@@ -1,0 +1,156 @@
+@import url("./_sizing.scss");
+
+
+@mixin align-horizontaly {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@mixin align-vertically {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+
+
+body {
+    padding: 0;
+    margin: 0
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 0;
+    margin: 0
+}
+
+.layout-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+
+
+    .main_container {
+        min-height: calc(100vh - var(--app-footer-height) - var(--app-header-height));
+        margin-left: var(--site-navigation-panel-width);
+        background-color: #F5F5F5;
+    }
+}
+
+.header {
+    height: var(--app-header-height);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #3A6EA5;
+    color:white;
+    margin-left: var(--site-navigation-panel-width);
+    top: 0;
+    position: sticky;
+    padding: 0px 10px;
+}
+
+
+.layout_side_navbar {
+    position: fixed;
+    z-index: var(--z-index-site-navigation-panel);
+    height: 100vh;
+    padding-top: 40px;
+    left: 0;
+    top: 0;
+    width: var(--site-navigation-panel-width);
+    cursor: pointer;
+    background-color: #A5B8D4;
+    @include align-vertically;
+
+
+    a {
+        width:90%; 
+        margin-top:20px;
+        text-decoration: none;
+
+    }
+
+
+    .side_nav_link { 
+        
+        display: flex;
+        flex-direction: row;
+        align-items: center; 
+        margin : 5px auto;
+        padding: 0;
+        height: 40px;
+        width: 100%;
+
+         &_icon {
+            width:40px;
+            height: 40px;
+            border-radius: 100%;
+            background-color:#3A6EA5;
+            color:white;
+            flex-shrink: 0; 
+            @include align-horizontaly;
+            justify-content: center;
+            margin:0px auto;
+         }
+
+         &_title {
+             opacity: 0
+         }
+    }
+
+    &:hover {
+        width: var(--site-navigation-panel-width-hover);
+        transition: width 250ms ease-in-out; 
+         
+        .side_nav_link {
+
+             &_title {
+                opacity: 1;
+                margin-left: 5px;
+                transition: opacity 400ms ease-in-out; 
+                color: white;
+             }
+
+             &_icon {
+                 margin:5px
+
+             }
+
+
+
+           
+        }
+    }
+
+    
+     
+    
+}
+
+
+.layout_footer {
+    position: absolute;
+    bottom: 0;
+    height: var(--app-footer-height);
+    width: 100%;
+    margin-left: var(--site-navigation-panel-width);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #2C3E50;
+    padding: 0px 10px;
+    color:white;
+}
