@@ -43,6 +43,11 @@ Step 3. Run following command for each folder
 
 
 
+        Note :  if Any of application runing on different port other than 8080 for Layout ,8081 for Application1 , 8082 for Application2 and  9000 for Root
+        please update the port in webpack.config file of all application and index.ejs file of Root 
+
+
+
  Step 5. Naviagte to 
  
          -http://localhost:8080/  for Layout 
