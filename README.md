@@ -9,6 +9,7 @@ Step 2. Switch to master branch if not in master branch by default
 
 
 Step 3. Run following command for each folder 
+
         For Application1
           - cd Application1
           - git init
